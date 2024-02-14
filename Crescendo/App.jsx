@@ -1,0 +1,208 @@
+import { StatusBar } from 'expo-status-bar';
+import { useFonts } from 'expo-font';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { FontAwesome6 } from 'react-native-vector-icons';
+import RadialVariant from "./components/TimerControl" // For the Dial Timer
+import ContentCard from "./components/ContentCard" // For PracList and Exercise cards
+import StatsContainer from './components/StatsContainer';
+
+export default function App() {
+  const maxTime = 7200; // Example max time in seconds (2 hours)
+  const [timerValue, setTimerValue] = useState(0); // You can set an initial timer value if needed
+  const [isTimerRunning, setIsTimerRunning] = useState(false);
+
+  const toggleTimer = () => {
+    // Toggle the timer running state
+    setIsTimerRunning(!isTimerRunning);
+    // If the timer is running, reset the timer value
+    if (isTimerRunning) setTimerValue(0);
+  };
+
+  let [fontsLoaded] = useFonts({
+    'JosefinSans-Regular': require('./assets/fonts/JosefinSans-Regular.ttf'),
+    'JosefinSans-Medium': require('./assets/fonts/JosefinSans-Medium.ttf'),
+    'JosefinSans-Bold': require('./assets/fonts/JosefinSans-Bold.ttf'),
+    'JosefinSans-SemiBold': require('./assets/fonts/JosefinSans-SemiBold.ttf')
+  });
+
+  if (!fontsLoaded) {
+    
+  }
+
+  return (
+    <GestureHandlerRootView style={styles.gestureHandlerRoot}>
+      {/* Main Container */}
+      <View style={styles.container}>
+        {/* Title Row (pfp, welcome message, hamburger menu) */}
+        <View style={styles.titleRow}>
+          <Image
+            source={require('./assets/pfp.jpeg')} // Update this path
+            style={styles.profileImage}
+          />
+
+          <Text style={styles.title}>Welcome back, Sean!</Text>
+
+          <FontAwesome6 style={styles.menuIcon} name="bars" size={40} color="white" />
+        </View>
+
+        {/* Statistics Container */}
+        <StatsContainer>
+          
+        </StatsContainer>
+
+        {/* PracLists & Exercises Card Container */}
+        <View style={styles.contentContainer}>
+          {/* PracLists Card Row */}
+          <Text style={styles.contentTitle}>PracLists</Text>
+          <View style={styles.cardRow}>
+            <ContentCard 
+              cardTitle="Scale Flexibility" 
+              cardTime="100 Minutes" 
+              cardTags={['Technique', 'Patterns', 'Flexibility']} 
+            />
+          </View>
+
+          {/* Exercises Card Row */}
+          <Text style={[styles.contentTitle, {marginTop: 10}]}>Exercises</Text>
+          <View style={styles.cardRow}>
+            <ContentCard 
+              cardTitle="Long Tones" 
+              cardTime="15-60 Minutes" 
+              cardTags={['Warm-Up']} 
+            />
+          </View>
+
+        </View>
+
+        <View style={styles.bottomRow}>
+          {/* Tuner & Metronome Column */ }
+          <View style={[styles.toolColumn, {marginLeft: 25}]}>
+            <View style={styles.toolButton}>
+              <FontAwesome6 name="sliders" size={24} color="black" />
+            </View>
+            <View style={styles.toolButton}>
+              <FontAwesome6 name="hourglass-end" size={24} color="black" />
+            </View>
+          </View>
+
+          {/* Dial Timer */}
+          <RadialVariant/>
+
+          {/* Ear Training & Recordings Column */}
+          <View style={[styles.toolColumn, {marginRight: 25}]}>
+            <View style={styles.toolButton}>
+              <FontAwesome6 name="ear-listen" size={24} color="black" />
+            </View>
+            <View style={styles.toolButton}>
+              <FontAwesome6 name="microphone" size={24} color="black" />
+            </View>
+          </View>
+        </View>
+  
+        <StatusBar style="auto" />
+      </View>
+    </GestureHandlerRootView>
+  );
+}
+
+const styles = StyleSheet.create({
+  gestureHandlerRoot: {
+    flex: 1,
+  },
+
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: '#181A1B',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  titleRow: {
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignContent: 'center',
+    marginHorizontal: 10,
+    marginTop: 50,
+  },
+  title: {
+    color: '#fff',
+    fontFamily: 'JosefinSans-Medium',
+    fontSize: 24,
+    textAlign: 'center', // Center the text
+    flex: 1,
+  },
+  profileImage: {
+    width: 45,
+    height: 45, 
+    borderRadius: 22.5, 
+    marginLeft: 25,
+    marginRight: 10,
+  },
+  menuIcon: {
+    width: 45,
+    height: 45,
+    borderRadius: 22.5,
+    marginLeft: 10,
+    marginRight: 25,
+  },
+
+  statsContainer: {
+    flexDirection: 'row',
+    width: 330,
+    height: 125,
+    marginTop: 15,
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: '#5EA6CA',
+    backgroundColor: '#0f2239',
+  },
+
+  contentContainer: {
+    flexDirection: 'column',
+    width: 345,
+    height: 335,
+    marginTop: 10,
+  },
+  contentTitle: {
+    color: '#5EA6CA',
+    fontSize: 24,
+    fontFamily: 'JosefinSans-Bold',
+    textAlign: 'left',
+    marginLeft: 0,
+    marginTop: 5,
+  },
+  cardRow: {
+    flexDirection: 'row',
+    height: 130,
+    marginTop: 2.5,
+    marginLeft: -20,
+  },
+  
+  bottomRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  toolColumn: {
+    height: 250,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+  },
+  toolButton: {
+    width: 50,
+    height: 75,
+    borderRadius: 10,
+    backgroundColor: '#0EB4B0',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  toolIcon: {
+    
+  }
+});
