@@ -1,25 +1,25 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 const StatsContainer = () => {
   return (
     <View style={styles.statsContainer}>
         {/* Challenge Boxes */}
         <View style={styles.challengeColumn}>
-            <View style={[styles.challengeContainer, {marginTop: -7}]}>
+            <TouchableOpacity style={[styles.challengeContainer, {marginTop: -7}]}>
                 <Text style={styles.challengeText}>Daily Challenges</Text>
                 <Text style={styles.challengeCount}>0/5</Text>
-            </View>
+            </TouchableOpacity>
 
-            <View style={styles.challengeContainer}>
+            <TouchableOpacity style={styles.challengeContainer}>
                 <Text style={styles.challengeText}>Weekly Challenges</Text>
                 <Text style={styles.challengeCount}>0/5</Text>
-            </View>
+            </TouchableOpacity>
 
-            <View style={styles.challengeContainer}>
+            <TouchableOpacity style={styles.challengeContainer}>
                 <Text style={styles.challengeText}>Milestones</Text>
                 <Text style={styles.challengeCount}>0/5</Text>
-            </View>
+            </TouchableOpacity>
         </View>
 
       {/* Graph Component*/}

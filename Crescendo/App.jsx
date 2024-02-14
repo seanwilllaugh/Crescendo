@@ -43,14 +43,13 @@ export default function App() {
           />
 
           <Text style={styles.title}>Welcome back, Sean!</Text>
-
-          <FontAwesome6 style={styles.menuIcon} name="bars" size={40} color="white" />
+          <TouchableOpacity>
+            <FontAwesome6 style={styles.menuIcon} name="bars" size={40} color="white" />
+          </TouchableOpacity>
         </View>
 
         {/* Statistics Container */}
-        <StatsContainer>
-          
-        </StatsContainer>
+        <StatsContainer></StatsContainer>
 
         {/* PracLists & Exercises Card Container */}
         <View style={styles.contentContainer}>
@@ -79,12 +78,12 @@ export default function App() {
         <View style={styles.bottomRow}>
           {/* Tuner & Metronome Column */ }
           <View style={[styles.toolColumn, {marginLeft: 25}]}>
-            <View style={styles.toolButton}>
-              <FontAwesome6 name="sliders" size={24} color="black" />
-            </View>
-            <View style={styles.toolButton}>
-              <FontAwesome6 name="hourglass-end" size={24} color="black" />
-            </View>
+            <TouchableOpacity style={styles.toolButton}>
+              <FontAwesome6 name="sliders" size={24} color="white" />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.toolButton}>
+              <FontAwesome6 name="hourglass-end" size={24} color="white" />
+            </TouchableOpacity>
           </View>
 
           {/* Dial Timer */}
@@ -92,12 +91,12 @@ export default function App() {
 
           {/* Ear Training & Recordings Column */}
           <View style={[styles.toolColumn, {marginRight: 25}]}>
-            <View style={styles.toolButton}>
-              <FontAwesome6 name="ear-listen" size={24} color="black" />
-            </View>
-            <View style={styles.toolButton}>
-              <FontAwesome6 name="microphone" size={24} color="black" />
-            </View>
+            <TouchableOpacity style={styles.toolButton}>
+              <FontAwesome6 name="ear-listen" size={24} color="white" />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.toolButton}>
+              <FontAwesome6 name="microphone" size={24} color="white" />
+            </TouchableOpacity>
           </View>
         </View>
   
