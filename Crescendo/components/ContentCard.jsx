@@ -1,16 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
+import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome'; // Make sure to import the Icon from the correct package
-import React, { useState } from 'react';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-// Define the ContentCard component to accept props
-const ContentCard = ({ cardTitle, cardTime, cardTags }) => {
+const ContentCard = ({ cardTitle, cardTime, cardTags, navigation }) => {
+  // Function to handle the press action
+  const onPlayPress = () => {
+    // Navigate to the DetailScreen with parameters
+    navigation.navigate('DetailScreen', {
+      title: cardTitle,
+      time: cardTime,
+      tags: cardTags,
+    });
+  };
+
   return (
     <View style={styles.cardContainer}>
       <Text style={styles.cardTitle}>{cardTitle}</Text>
       <Text style={styles.cardTime}>{cardTime}</Text>
-      <TouchableOpacity style={styles.playButton}>
+      <TouchableOpacity style={styles.playButton} onPress={onPlayPress}>
         <Icon name="play" size={15} color="#FFFFFF" />
       </TouchableOpacity>
       <View style={styles.tagContainer}>
