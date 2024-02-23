@@ -74,8 +74,6 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontFamily: 'JosefinSans-Medium',
     fontSize: 6.75,
-    //marginRight: 2, // Add a right margin to separate tags
-    //backgroundColor: '#2a475e', // Optional: Background color for tags
     borderRadius: 5, // Optional: Round corners for tags
     padding: 2, // Optional: Padding inside tags
   },

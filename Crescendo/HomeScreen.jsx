@@ -15,27 +15,40 @@ export default function HomeScreen({ navigation }) {
   const [timerValue, setTimerValue] = useState(0);
 
   const toggleTimer = () => {
-    setTimerRunning(prevState => !prevState); // This is a safer way to toggle based on previous state
-
-    if (!timerRunning) {
-      // If the timer is not already running, start it
-      const interval = setInterval(() => {
-        setTimerSeconds(prevSeconds => prevSeconds + 1);
-      }, 1000);
-      setTimerValue(interval); // Save the interval ID so we can clear it later
-    } else {
+    if (timerRunning) {
       // If the timer is running, stop it
       clearInterval(timerValue);
-      // It's safe to reset the timerValue here since we're inside the condition where timerRunning is true
-      setTimerValue(0); // Reset the interval ID
+      setTimerRunning(false);
+      console.log("Timer Stopped.")
+    } else {
+      // If the timer is not running, start it
+      console.log("Timer Started.")
+      
+      const intervalId = setInterval(() => {
+        setTimerSeconds(prevSeconds => {
+          const newSeconds = prevSeconds - 1;
+          if (newSeconds <= 0) {
+            clearInterval(intervalId); // Stop the timer if it reaches 0
+            console.log("Timer finished."); // Log that the timer has finished
+            return 0;
+          }
+          console.log(`Time left: ${newSeconds} seconds`); // Log remaining time every second
+          return newSeconds;
+        });
+      }, 1000); // Update the timer every second
+  
+      setTimerValue(intervalId); // Save the interval ID to be able to stop it later
+      setTimerRunning(true);
     }
+  };
+
+  const handleTimerChange = (newTimerSeconds) => {
+    setTimerSeconds(newTimerSeconds); // Update the state with the new timer value
   };
   
   useEffect(() => {
-  // Clean up the interval on component unmount
-  return () => clearInterval(timerValue);
-  }, [timerValue]); 
-  
+    return () => clearInterval(timerValue); // Clean up the interval on component unmount
+  }, [timerValue]);  
 
   let [fontsLoaded] = useFonts({
     'JosefinSans-Regular': require('./assets/fonts/JosefinSans-Regular.ttf'),
@@ -106,7 +119,7 @@ export default function HomeScreen({ navigation }) {
           </View>
 
           {/* Dial Timer */}
-          <RadialVariant onPress={toggleTimer} />
+          <RadialVariant onPress={toggleTimer} onTimerChange={handleTimerChange} timerSeconds={timerSeconds}/>
 
           {/* Ear Training & Recordings Column */}
           <View style={[styles.toolColumn, {marginRight: 25}]}>
