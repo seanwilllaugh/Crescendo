@@ -1,8 +1,9 @@
 # Crescendo
 Mobile app aiming to incentivize daily practice for the sake of consistency in improvement
 
-Planned Front End:
-Vue.js
+Front End:
+React.js
+Expo
 
 Planned Back End:
 Python
