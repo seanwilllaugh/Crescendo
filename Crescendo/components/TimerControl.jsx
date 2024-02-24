@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     top: '50%', // Centers vertically in the container
     left: '50%', // Centers horizontally in the container
     transform: [
-      { translateX: -45 }, // Adjust horizontally
+      { translateX: -40 }, // Adjust horizontally
       { translateY: -20 } // Adjust vertically
     ],
     alignItems: 'center', // Aligns text horizontally

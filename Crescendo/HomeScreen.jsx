@@ -9,7 +9,6 @@ import ContentCard from "./components/ContentCard" // For PracList and Exercise 
 import StatsContainer from './components/StatsContainer';
 
 export default function HomeScreen({ navigation }) {
-  const maxTime = 7200; // Example max time in seconds (2 hours)
   const [timerRunning, setTimerRunning] = useState(false);
   const [timerSeconds, setTimerSeconds] = useState(0);
   const [timerValue, setTimerValue] = useState(0);
@@ -23,7 +22,7 @@ export default function HomeScreen({ navigation }) {
     } else {
       // If the timer is not running, start it
       console.log("Timer Started.")
-      
+
       const intervalId = setInterval(() => {
         setTimerSeconds(prevSeconds => {
           const newSeconds = prevSeconds - 1;
