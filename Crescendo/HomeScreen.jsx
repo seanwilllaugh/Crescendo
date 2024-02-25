@@ -112,7 +112,10 @@ export default function HomeScreen({ navigation }) {
             <TouchableOpacity style={styles.toolButton}>
               <FontAwesome6 name="sliders" size={24} color="white" />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.toolButton}>
+            <TouchableOpacity
+              style={styles.toolButton}
+              onPress={() => navigation.navigate('MetronomeScreen')}
+            >
               <FontAwesome6 name="hourglass-end" size={24} color="white" />
             </TouchableOpacity>
           </View>
