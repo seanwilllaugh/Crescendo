@@ -6,13 +6,19 @@ import { theme } from './theme';
 
 const DetailScreen = ({ route, navigation }) => {
   // Extract the necessary data from the route parameters
-  const { title, time, tags } = route.params;
+  const { type, title, time, tags } = route.params;
 
   const onPlayPress = () => {
     // Navigate to the DetailScreen with parameters
-    navigation.navigate('ExerciseScreen', {
-      title: title,
-    });
+    if (type == 'exercise'){
+      navigation.navigate('ExerciseScreen', {
+        title: title,
+      });
+    } else {
+      navigation.navigate('FlashCardScreen', {
+        title: title,
+      });
+    }
   };
 
   return (
