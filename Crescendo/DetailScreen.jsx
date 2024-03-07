@@ -1,12 +1,19 @@
 // DetailScreen.js
 
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { theme } from './theme';
 
-const DetailScreen = ({ route }) => {
+const DetailScreen = ({ route, navigation }) => {
   // Extract the necessary data from the route parameters
   const { title, time, tags } = route.params;
+
+  const onPlayPress = () => {
+    // Navigate to the DetailScreen with parameters
+    navigation.navigate('ExerciseScreen', {
+      title: title,
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -36,7 +43,10 @@ const DetailScreen = ({ route }) => {
         </View>
 
         <Text style={styles.setList}>Setlist</Text>
-
+        
+        <TouchableOpacity style={styles.playButton} onPress={onPlayPress}>
+          <Text style={styles.buttonTitle}>Start</Text>
+        </TouchableOpacity>
     </View>
   );
 };
@@ -125,7 +135,22 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginLeft: 10,
     alignSelf: 'flex-start'
-  }
+  },
+
+  playButton: {
+    width: 200, // Adjust width as needed
+    height: 50, // Adjust height as needed
+    borderRadius: 10, // Half of width/height to make it round
+    backgroundColor: '#0EB4B0', // Blue background color
+    justifyContent: 'center', // Center icon horizontally
+    alignItems: 'center', // Center icon vertically
+    marginBottom: 16, // Spacing between play button and tags
+  },
+  buttonTitle: {
+    fontSize: 24,
+    fontFamily: 'JosefinSans-Bold',
+    color: '#FFFFFF'
+  },
 });
 
 export default DetailScreen;
