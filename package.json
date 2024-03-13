@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@react-native-community/slider": "^4.5.0",
+    "expo": "^50.0.8",
     "expo-av": "^13.10.5"
   }
 }

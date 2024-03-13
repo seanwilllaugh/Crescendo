@@ -86,6 +86,7 @@ export default function HomeScreen({ navigation }) {
           <Text style={styles.contentTitle}>PracLists</Text>
           <View style={styles.cardRow}>
             <ContentCard 
+              cardType="PracList"
               cardTitle="Scale Flexibility" 
               cardTime="100 Minutes" 
               cardTags={['Technique', 'Patterns', 'Flexibility']}
@@ -97,6 +98,7 @@ export default function HomeScreen({ navigation }) {
           <Text style={[styles.contentTitle, {marginTop: 10}]}>Exercises</Text>
           <View style={styles.cardRow}>
             <ContentCard 
+              cardType="exercise"
               cardTitle="Long Tones" 
               cardTime="15-60 Minutes" 
               cardTags={['Warm-Up']}

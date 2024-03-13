@@ -2,11 +2,12 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const ContentCard = ({ cardTitle, cardTime, cardTags, navigation }) => {
+const ContentCard = ({ cardType, cardTitle, cardTime, cardTags, navigation }) => {
   // Function to handle the press action
   const onPlayPress = () => {
     // Navigate to the DetailScreen with parameters
     navigation.navigate('DetailScreen', {
+      type: cardType,
       title: cardTitle,
       time: cardTime,
       tags: cardTags,
