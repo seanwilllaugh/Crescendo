@@ -50,19 +50,20 @@ const styles = StyleSheet.create({
         height: 40, 
         borderRadius: 10, 
         backgroundColor: '#0EB4B0', 
-        justifyContent: 'center', // Center icon horizontally
-        alignItems: 'center', // Center icon vertically
-        marginBottom: 16, // Spacing between play button and tags
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        marginBottom: 16, 
     },
     nextExerciseButton: {
         width: 100, 
-        height: 40, 
+        height: 60, 
         borderRadius: 10, 
+        justifyContent: 'center', 
+        alignItems: 'center', 
         backgroundColor: '#0EB4B0', 
         position: 'absolute',
         bottom: 20,
         right: 20,
-        padding: 10,
     },
   });
 
